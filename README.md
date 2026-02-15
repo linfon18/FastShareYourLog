@@ -5,6 +5,7 @@
 [![C#](https://img.shields.io/badge/C%23-9.0-239120?logo=c-sharp)](https://docs.microsoft.com/dotnet/csharp/)
 [![Avalonia UI](https://img.shields.io/badge/Avalonia%20UI-11.3-8E44AD?logo=dotnet)](https://avaloniaui.net/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Release](https://img.shields.io/github/v/release/linfon18/FastShareYourLog?include_prereleases)](https://github.com/linfon18/FastShareYourLog/releases)
 
 ---
 
@@ -23,18 +24,20 @@
 
 ## 📥 下载安装
 
+👉 **[前往 Releases 页面下载](https://github.com/yourusername/FastShareYourLog/releases)** 👈
+
 ### 🪟 Windows
-- [📦 win-x64](publish/win-x64/FastShareYourLog.exe) - 64位系统
-- [📦 win-x86](publish/win-x86/FastShareYourLog.exe) - 32位系统
+- `win-x64` - 64位系统
+- `win-x86` - 32位系统
 
 ### 🐧 Linux
-- [📦 linux-x64](publish/linux-x64/FastShareYourLog) - x64 架构
-- [📦 linux-arm](publish/linux-arm/FastShareYourLog) - ARM 架构
-- [📦 linux-arm64](publish/linux-arm64/FastShareYourLog) - ARM64 架构
+- `linux-x64` - x64 架构
+- `linux-arm` - ARM 架构
+- `linux-arm64` - ARM64 架构
 
 ### 🍎 macOS
-- [📦 osx-x64](publish/osx-x64/FastShareYourLog) - Intel 芯片
-- [📦 osx-arm64](publish/osx-arm64/FastShareYourLog) - Apple Silicon (M1/M2)
+- `osx-x64` - Intel 芯片
+- `osx-arm64` - Apple Silicon (M1/M2)
 
 > ⚠️ **运行要求**：需要安装 [.NET 9.0 Runtime](https://dotnet.microsoft.com/download/dotnet/9.0)
 
@@ -43,10 +46,50 @@
 ## 🚀 快速开始
 
 ### 1️⃣ 启动程序
-双击运行 `FastShareYourLog`（或 `.exe`）
+
+#### 🪟 Windows
+```powershell
+# 双击运行
+FastShareYourLog.exe
+
+# 或命令行
+.\FastShareYourLog.exe
+
+# 带日志文件参数启动（直接上传）
+.\FastShareYourLog.exe "C:\path\to\your.log"
+```
+
+#### 🐧 Linux
+```bash
+# 添加执行权限
+chmod +x FastShareYourLog
+
+# 运行程序
+./FastShareYourLog
+
+# 带日志文件参数启动（直接上传）
+./FastShareYourLog /path/to/your.log
+```
+
+#### 🍎 macOS
+```bash
+# 添加执行权限
+chmod +x FastShareYourLog
+
+# 运行程序（可能需要绕过安全验证）
+./FastShareYourLog
+
+# 或右键 → 打开
+# 系统偏好设置 → 安全性与隐私 → 仍要打开
+
+# 带日志文件参数启动（直接上传）
+./FastShareYourLog /path/to/your.log
+```
 
 ### 2️⃣ 开启右键菜单
 点击 **"开启"** 按钮，注册右键菜单
+
+> 📝 **注意**：macOS 和 Linux 不支持右键菜单功能
 
 ### 3️⃣ 分享日志
 右键点击任意 `.log` 文件 → 选择 **"分享此日志"**
@@ -109,11 +152,15 @@ FastShareYourLog/
 
 ### 🔧 环境要求
 - [.NET 9.0 SDK](https://dotnet.microsoft.com/download/dotnet/9.0)
-- Visual Studio 2022 或 VS Code
+- Visual Studio 2022 或 VS Code / Rider
 
-### 🏗️ 构建命令
+### 🏗️ 本地构建
 
 ```bash
+# 克隆仓库
+git clone https://github.com/yourusername/FastShareYourLog.git
+cd FastShareYourLog
+
 # 还原依赖
 dotnet restore
 
@@ -124,28 +171,70 @@ dotnet build
 dotnet run
 ```
 
-### 📦 发布单文件
+### 📦 发布全平台（单文件 + 无框架）
 
 ```bash
-# Windows x64
-dotnet publish -c Release -f net9.0-windows -r win-x64 --self-contained false -p:PublishSingleFile=true
+# 清理并创建发布目录
+rm -rf publish 2>/dev/null || true
+mkdir -p publish
 
-# Linux x64
-dotnet publish -c Release -f net9.0 -r linux-x64 --self-contained false -p:PublishSingleFile=true
+# 🪟 Windows x64
+dotnet publish -c Release -f net9.0-windows -r win-x64 \
+  --self-contained false -p:PublishSingleFile=true \
+  -o ./publish/win-x64
 
-# macOS arm64
-dotnet publish -c Release -f net9.0 -r osx-arm64 --self-contained false -p:PublishSingleFile=true
+# 🪟 Windows x86
+dotnet publish -c Release -f net9.0-windows -r win-x86 \
+  --self-contained false -p:PublishSingleFile=true \
+  -o ./publish/win-x86
+
+# 🐧 Linux x64
+dotnet publish -c Release -f net9.0 -r linux-x64 \
+  --self-contained false -p:PublishSingleFile=true \
+  -o ./publish/linux-x64
+
+# 🐧 Linux ARM
+dotnet publish -c Release -f net9.0 -r linux-arm \
+  --self-contained false -p:PublishSingleFile=true \
+  -o ./publish/linux-arm
+
+# 🐧 Linux ARM64
+dotnet publish -c Release -f net9.0 -r linux-arm64 \
+  --self-contained false -p:PublishSingleFile=true \
+  -o ./publish/linux-arm64
+
+# 🍎 macOS x64
+dotnet publish -c Release -f net9.0 -r osx-x64 \
+  --self-contained false -p:PublishSingleFile=true \
+  -o ./publish/osx-x64
+
+# 🍎 macOS ARM64 (Apple Silicon)
+dotnet publish -c Release -f net9.0 -r osx-arm64 \
+  --self-contained false -p:PublishSingleFile=true \
+  -o ./publish/osx-arm64
+```
+
+### 🔥 发布自包含版本（带运行时）
+
+如需发布包含 .NET 运行时的版本（用户无需安装运行时）：
+
+```bash
+# 自包含 + 单文件 + 裁剪
+dotnet publish -c Release -f net9.0-windows -r win-x64 \
+  --self-contained true -p:PublishSingleFile=true \
+  -p:PublishTrimmed=true -p:TrimMode=partial \
+  -o ./publish/win-x64-self-contained
 ```
 
 ---
 
 ## 🌟 支持的系统
 
-| 系统 | 最低版本 | 架构 |
-|------|---------|------|
-| Windows | 10 / Server 2016 | x64, x86 |
-| Linux | Ubuntu 20.04+ | x64, ARM, ARM64 |
-| macOS | 10.15+ | x64, ARM64 |
+| 系统 | 最低版本 | 架构 | 右键菜单 |
+|------|---------|------|---------|
+| Windows | 8 / 10 / Server 2016 | x64, x86 | ✅ 支持 |
+| Linux | Ubuntu 20.04+ | x64, ARM, ARM64 | ❌ 不支持 |
+| macOS | 10.15+ | x64, ARM64 | ❌ 不支持 |
 
 ---
 
@@ -179,7 +268,8 @@ dotnet publish -c Release -f net9.0 -r osx-arm64 --self-contained false -p:Publi
 
 **⭐ 如果这个项目对你有帮助，请给个 Star！** ⭐
 
-Made with ❤️ by linfon18  
-后续将视情况发.NET FRAMEWORK 4.7.2版本的Windows独立版本 这样就真小而美了
+Made with ❤️ by linfon18
+
+💡 后续将视情况发布 .NET Framework 4.7.2 版本的 Windows 独立版本，真·小而美
 
 </div>
