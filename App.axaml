@@ -1,0 +1,18 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="FastShareYourLog.App"
+             xmlns:local="using:FastShareYourLog"
+             RequestedThemeVariant="Dark">
+
+    <Application.DataTemplates>
+        <local:ViewLocator/>
+    </Application.DataTemplates>
+
+    <Application.Styles>
+        <FluentTheme>
+            <FluentTheme.Palettes>
+                <ColorPaletteResources x:Key="Dark" Accent="#667eea" AltHigh="#FF000000" AltLow="#FF000000" AltMedium="#FF000000" AltMediumHigh="#FF000000" AltMediumLow="#FF000000" BaseHigh="#FFFFFFFF" BaseLow="#FF333333" BaseMedium="#FFA0A0A0" BaseMediumHigh="#FFB0B0B0" BaseMediumLow="#FF707070" ChromeAltLow="#FFB0B0B0" ChromeBlackHigh="#FF000000" ChromeBlackLow="#FFB0B0B0" ChromeBlackMedium="#FF000000" ChromeBlackMediumLow="#FF000000" ChromeDisabledHigh="#FF333333" ChromeDisabledLow="#FFA0A0A0" ChromeGray="#FF808080" ChromeHigh="#FF808080" ChromeLow="#FF1a1a2e" ChromeMedium="#FF16213e" ChromeMediumLow="#FF0f3460" ChromeWhite="#FFFFFFFF" ListLow="#FF1a1a2e" ListMedium="#FF16213e" RegionColor="#FF0f0f23" />
+            </FluentTheme.Palettes>
+        </FluentTheme>
+    </Application.Styles>
+</Application>

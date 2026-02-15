@@ -1,0 +1,161 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:FastShareYourLog.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="300"
+        x:Class="FastShareYourLog.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Title="FastShareYourLog"
+        Width="400" Height="300"
+        Background="#2d2d2d"
+        WindowStartupLocation="CenterScreen"
+        CanResize="False"
+        ExtendClientAreaToDecorationsHint="True"
+        ExtendClientAreaChromeHints="NoChrome"
+        ExtendClientAreaTitleBarHeightHint="36"
+        SystemDecorations="BorderOnly">
+
+  <Design.DataContext>
+    <vm:MainWindowViewModel/>
+  </Design.DataContext>
+
+  <Window.Styles>
+    <Style Selector="Button">
+      <Setter Property="CornerRadius" Value="0"/>
+      <Setter Property="BorderThickness" Value="0"/>
+      <Setter Property="FontSize" Value="14"/>
+      <Setter Property="FontWeight" Value="Normal"/>
+    </Style>
+    <Style Selector="Button:pointerover">
+      <Setter Property="Opacity" Value="0.85"/>
+    </Style>
+    <Style Selector="Button:pressed">
+      <Setter Property="Opacity" Value="0.7"/>
+    </Style>
+  </Window.Styles>
+
+  <Grid RowDefinitions="Auto,*,Auto">
+    <!-- 标题栏 -->
+    <Border Grid.Row="0"
+            Height="36"
+            Background="#1a1a1a"
+            BorderBrush="#3d3d3d"
+            BorderThickness="0,0,0,1"
+            PointerPressed="OnTitleBarPointerPressed">
+      <Grid ColumnDefinitions="*,Auto">
+        <TextBlock Grid.Column="0"
+                   Text="FastShareYourLog"
+                   Foreground="#cccccc"
+                   FontSize="13"
+                   VerticalAlignment="Center"
+                   Margin="12,0"/>
+        <Button Grid.Column="1"
+                Content="✕"
+                Width="28"
+                Height="28"
+                Margin="0,0,4,0"
+                Background="Transparent"
+                Foreground="#999999"
+                FontSize="12"
+                CornerRadius="0"
+                HorizontalContentAlignment="Center"
+                VerticalContentAlignment="Center"
+                Command="{Binding CloseCommand}"/>
+      </Grid>
+    </Border>
+
+    <!-- 主内容区 -->
+    <Grid Grid.Row="1" RowDefinitions="Auto,Auto">
+      <!-- 按钮区域 -->
+      <Grid Grid.Row="0"
+            ColumnDefinitions="*,*"
+            Margin="40,30">
+        <!-- 开启按钮 -->
+        <Button Grid.Column="0"
+                Width="90"
+                Height="90"
+                HorizontalAlignment="Center"
+                Command="{Binding EnableCommand}"
+                IsEnabled="{Binding !IsEnabled}">
+          <Button.Background>
+            <SolidColorBrush Color="#4a9eff"/>
+          </Button.Background>
+          <Grid RowDefinitions="Auto,Auto">
+            <TextBlock Grid.Row="0"
+                       Text="▶"
+                       FontSize="28"
+                       Foreground="White"
+                       HorizontalAlignment="Center"/>
+            <TextBlock Grid.Row="1"
+                       Text="开启"
+                       FontSize="13"
+                       Foreground="White"
+                       HorizontalAlignment="Center"
+                       Margin="0,4,0,0"/>
+          </Grid>
+        </Button>
+
+        <!-- 关闭按钮 -->
+        <Button Grid.Column="1"
+                Width="90"
+                Height="90"
+                HorizontalAlignment="Center"
+                Command="{Binding DisableCommand}"
+                IsEnabled="{Binding IsEnabled}">
+          <Button.Background>
+            <SolidColorBrush Color="#e74c3c"/>
+          </Button.Background>
+          <Grid RowDefinitions="Auto,Auto">
+            <TextBlock Grid.Row="0"
+                       Text="■"
+                       FontSize="28"
+                       Foreground="White"
+                       HorizontalAlignment="Center"/>
+            <TextBlock Grid.Row="1"
+                       Text="关闭"
+                       FontSize="13"
+                       Foreground="White"
+                       HorizontalAlignment="Center"
+                       Margin="0,4,0,0"/>
+          </Grid>
+        </Button>
+      </Grid>
+
+      <!-- 文本区域 -->
+      <Border Grid.Row="1"
+              Background="#1a1a1a"
+              BorderBrush="#3d3d3d"
+              BorderThickness="1"
+              Margin="40,0,40,20"
+              Padding="10,8">
+        <TextBox Text="{Binding CustomWord}"
+                 FontFamily="Microsoft YaHei, 微软雅黑, sans-serif"
+                 FontSize="9"
+                 Foreground="#cccccc"
+                 Background="Transparent"
+                 BorderThickness="0"
+                 CaretBrush="#cccccc"
+                 SelectionBrush="#4a9eff"
+                 TextWrapping="Wrap"
+                 AcceptsReturn="True"
+                 Height="50"
+                 VerticalContentAlignment="Top"
+                 IsReadOnly="True"/>
+      </Border>
+    </Grid>
+
+    <!-- 状态栏 -->
+    <Border Grid.Row="2"
+            Height="28"
+            Background="#1a1a1a"
+            BorderBrush="#3d3d3d"
+            BorderThickness="0,1,0,0">
+      <TextBlock Text="{Binding StatusText}"
+                 Foreground="#888888"
+                 FontSize="11"
+                 VerticalAlignment="Center"
+                 HorizontalAlignment="Center"/>
+    </Border>
+  </Grid>
+</Window>
