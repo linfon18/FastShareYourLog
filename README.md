@@ -180,5 +180,6 @@ dotnet publish -c Release -f net9.0 -r osx-arm64 --self-contained false -p:Publi
 **⭐ 如果这个项目对你有帮助，请给个 Star！** ⭐
 
 Made with ❤️ by linfon18  
+后续将视情况发.NET FRAMEWORK 4.7.2版本的Windows独立版本 这样就真小而美了
 
 </div>
