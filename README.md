@@ -24,7 +24,7 @@
 
 ## 📥 下载安装
 
-👉 **[前往 Releases 页面下载](https://github.com/yourusername/FastShareYourLog/releases)** 👈
+👉 **[前往 Releases 页面下载](https://github.com/linfon18/FastShareYourLog/releases)** 👈
 
 ### 🪟 Windows
 - `win-x64` - 64位系统
@@ -158,7 +158,7 @@ FastShareYourLog/
 
 ```bash
 # 克隆仓库
-git clone https://github.com/yourusername/FastShareYourLog.git
+git clone https://github.com/linfon18/FastShareYourLog.git
 cd FastShareYourLog
 
 # 还原依赖
